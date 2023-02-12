@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\Artist;
+use Faker\Factory as Faker;
 
 
 class ArtistSeeder extends Seeder
@@ -20,8 +21,16 @@ class ArtistSeeder extends Seeder
         //Empty the table first
         Artist::truncate();
 
+        $faker = Faker::create();
+
+        for ($i = 0; $i < 50; $i++) {
+            DB::table('artists')->insert([
+                'firstname' => $faker->firstName,
+                'lastname' => $faker->lastName,
+            ]);
+        }
                 //Define data
-       $artists = [
+      /* $artists = [
             ['firstname'=>'Daniel','lastname'=>'Marcelin'],
             ['firstname'=>'Philippe','lastname'=>'Laurent'],
             ['firstname'=>'Marius','lastname'=>'Von Mayenburg'],
@@ -34,8 +43,8 @@ class ArtistSeeder extends Seeder
             ['firstname'=>'Claude','lastname'=>'Semal'],
             ['firstname'=>'Laurence','lastname'=>'Warin'],
         ];
-        
+
         //Insert data in the table
-        DB::table('artists')->insert($artists);
+        DB::table('artists')->insert($artists);*/
     }
 }
