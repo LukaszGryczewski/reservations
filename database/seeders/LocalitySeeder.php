@@ -24,8 +24,9 @@ class LocalitySeeder extends Seeder
 
         for($i=0; $i<100; $i++){
             DB::table('localities')->insert([
-            'postal_code' => $faker->countryCode,
-            'locality'    => $faker->city]);
+                'postal_code' => $faker->postcode,
+                'locality'    => $faker->city,
+            ]);
         }
     }
 }
