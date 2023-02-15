@@ -25,6 +25,10 @@ class ArtistSeeder extends Seeder
 
 
 
+
+
+
+
         //Empty the table first
         Artist::truncate();
 
