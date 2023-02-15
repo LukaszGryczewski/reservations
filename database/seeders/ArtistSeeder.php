@@ -18,6 +18,7 @@ class ArtistSeeder extends Seeder
      */
     public function run()
     {
+
         //Empty the table first
         Artist::truncate();
 
