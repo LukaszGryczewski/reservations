@@ -13,7 +13,7 @@ class Type extends Model
      *
      * @var array
      */
-    protected $guarded = ['type' ];
+    protected $fillable = ['type' ];
 
     /**
      * The table associated with the model types.
