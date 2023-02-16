@@ -31,4 +31,6 @@ class Locality extends Model
      */
     public $timestamps = false;
 
+
+
 }
