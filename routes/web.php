@@ -2,8 +2,6 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ArtistController;
-use App\Http\Controllers\TypeController;
-use App\Http\Controllers\LocalityController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,15 +27,6 @@ Route::get('/artist/edit/{id}', [ArtistController::class, 'edit'])
 	->where('id', '[0-9]+')->name('artist.edit');
 Route::put('/artist/{id}', [ArtistController::class, 'update'])
 	->where('id', '[0-9]+')->name('artist.update');
-
-Route::get('/type', [TypeController::class, 'index'])->name('type.index');
-Route::get('/type/{id}', [TypeController::class, 'show'])
-    ->where('id', '[0-9]+')->name('type.show');
-
-Route::get('/locality', [LocalityController::class, 'index'])->name('locality.index');
-Route::get('/locality/{id',[LocalityController::class,'show'])
-    ->where('id','[0-9]+')->name('locality.show');
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');
