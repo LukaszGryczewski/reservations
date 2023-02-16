@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Type extends Model
 {
     use HasFactory;
+
     /**
      * The attributes that are mass assignable guarded (type).
      *
@@ -28,4 +29,12 @@ class Type extends Model
      * @var bool
      */
     protected $timelabs = 'false';
+
+    /**
+     * Relation ManyToMany
+     *
+     */
+    public function artists(){
+        return $this->belongsToMany(Artist::class);
+    }
 }
