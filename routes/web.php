@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\LocalityController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,8 @@ Route::get('/locality', [LocalityController::class, 'index'])
 Route::get('/locality/{id',[LocalityController::class,'show'])
     ->where('id','[0-9]+')->name('locality.show');
 
+Route::get('/role',[RoleController::class,'index'])
+    ->name('role.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
