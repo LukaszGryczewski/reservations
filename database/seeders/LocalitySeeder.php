@@ -21,13 +21,26 @@ class LocalitySeeder extends Seeder
         Locality::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
-        $faker = Faker::create();
+        /*$faker = Faker::create();
 
         for($i=0; $i<100; $i++){
             DB::table('localities')->insert([
                 'postal_code' => $faker->postcode,
                 'locality'    => $faker->city,
             ]);
-        }
+        }*/
+
+        $localities = [
+            ['locality'=>'Bruxelles','postal_code'=>1000],
+            ['locality'=>'Marcinelle','postal_code'=>6001],
+            ['locality'=>'Zellik','postal_code'=>1731],
+            ['locality'=>'Ecaussinnes','postal_code'=>7190],
+            ['locality'=>'Beaumont','postal_code'=>6500],
+            ['locality'=>'Anderlecht','postal_code'=>1070],
+            ['locality'=>'Watermael-Boitsfort','postal_code'=>1170],
+        ];
+
+        //Insert data in the table
+        DB::table('localities')->insert($localities);
     }
 }
