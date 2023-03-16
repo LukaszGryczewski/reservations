@@ -52,7 +52,11 @@ class LocalityController extends Controller
      */
     public function show($id)
     {
-        //
+        $locality = Locality::find($id);
+
+        return view('locality.show',[
+            'locality'=>$locality
+        ]);
     }
 
     /**

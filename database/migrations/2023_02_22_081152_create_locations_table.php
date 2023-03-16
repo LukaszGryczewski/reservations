@@ -25,7 +25,7 @@ return new class extends Migration
             $table->foreign('locality_id')
                   ->references('id')
                   ->on('localities')
-                  ->ondelete('restrict')
+                  ->onDelete('restrict')
                   ->onUpdate('cascade');
         });
     }
