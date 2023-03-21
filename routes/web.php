@@ -42,6 +42,10 @@ Route::get('/locality', [LocalityController::class, 'index'])
 Route::get('/locality/{id}',[LocalityController::class,'show'])
     ->where('id','[0-9]+')->name('locality.show');
 
+Route::get('location', [LocationController::class, 'index'])->name('location.index');
+Route::get('location/{id}', [LocationController::class, 'show'])
+->where('id', '[0-9]+')->name('location.show');
+
 Route::get('/role',[RoleController::class,'index'])
     ->name('role.index');
 
