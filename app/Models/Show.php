@@ -37,4 +37,12 @@ class Show extends Model
     public function location(){
         return $this->belongsTo(Location::class);
     }
+
+    /**
+     * Function relation OneToMany revers with Representation
+     *
+     */
+    public function representations(){
+        $this->hasMany(Representation::class);
+    }
 }

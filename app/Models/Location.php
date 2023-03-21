@@ -45,7 +45,16 @@ class Location extends Model
         return $this->belongsTo(Locality::class);
     }
 
+
     public function shows(){
         return $this->hasMany(Show::class);
+    }
+
+    /**
+     * Function relation OneToMany revers with Representation
+     *
+     */
+    public function representations(){
+        return $this->hasMany(Representation::class);
     }
 }
