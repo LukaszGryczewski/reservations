@@ -14,7 +14,14 @@ class Show extends Model
      *
      * @var array
      */
-    protected $fillable=['slug','title','description','poster_url','location_id','bookable','price'];
+    protected $fillable=['slug',
+                         'title',
+                         'description',
+                         'poster_url',
+                         'location_id',
+                         'bookable',
+                         'price'
+                        ];
 
     /**
      * The table shows associated with the model.
@@ -43,6 +50,6 @@ class Show extends Model
      *
      */
     public function representations(){
-        $this->hasMany(Representation::class);
+        return $this->hasMany(Representation::class);
     }
 }
