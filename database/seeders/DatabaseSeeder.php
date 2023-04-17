@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+
 use Illuminate\Database\Seeder;
 
 
@@ -18,11 +20,12 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ArtistSeeder ::class,
             TypeSeeder::class,
-            ArtistTypeSeeder::class,
             LocalitySeeder::class,
             LocationSeeder::class,
             ShowSeeder::class,
-            RepresentationSeeder::class
+            RepresentationSeeder::class,
+            ArtistTypeSeeder::class,
+            ArtistTypeShowSeeder::class
         ]);
 
 

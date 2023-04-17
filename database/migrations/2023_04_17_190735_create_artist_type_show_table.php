@@ -13,22 +13,23 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('artist_type', function (Blueprint $table) {
+        Schema::create('artist_type_show', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('artist_id');
-            $table->foreignId('type_id');
+            $table->foreignId('artist_type_id');
+            $table->foreignId('show_id');
 
-            $table->foreign('artist_id')
+            $table->foreign('artist_type_id')
                   ->references('id')
-                  ->on('artists')
+                  ->on('artist_type')
                   ->onDelete('restrict')
                   ->onUpdate('cascade');
-            $table->foreign('type_id')
+            $table->foreign('show_id')
                   ->references('id')
-                  ->on('types')
+                  ->on('shows')
                   ->onDelete('restrict')
                   ->onUpdate('cascade');
-            });
+
+        });
     }
 
     /**
@@ -38,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('artist_type');
+        Schema::dropIfExists('artist_type_show');
     }
 };
