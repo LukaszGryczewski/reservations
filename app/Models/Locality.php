@@ -31,4 +31,13 @@ class Locality extends Model
      */
     public $timestamps = false;
 
+    /**
+     * Function relation OneToMany with model Location
+     *
+     * @return void
+     */
+    public function locations(){
+        return $this->hasMany(Location::class);
+    }
+
 }

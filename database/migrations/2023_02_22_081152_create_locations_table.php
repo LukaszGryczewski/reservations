@@ -13,22 +13,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('artist_type', function (Blueprint $table) {
+        Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('artist_id');
-            $table->foreignId('type_id');
+            $table->string('slug',60)->unique();
+            $table->string('designation',60);
+            $table->string('address',255);
+            $table->foreignId('locality_id');
+            $table->string('website',255)->nullable();
+            $table->string('phone',30)->nullable();
 
-            $table->foreign('artist_id')
+            $table->foreign('locality_id')
                   ->references('id')
-                  ->on('artists')
+                  ->on('localities')
                   ->onDelete('restrict')
                   ->onUpdate('cascade');
-            $table->foreign('type_id')
-                  ->references('id')
-                  ->on('types')
-                  ->onDelete('restrict')
-                  ->onUpdate('cascade');
-            });
+        });
     }
 
     /**
@@ -38,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('artist_type');
+        Schema::dropIfExists('locations');
     }
 };

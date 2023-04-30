@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Models\Type;
+use App\Models\Representation;
 
-class TypeController extends Controller
+class RepresentationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +15,11 @@ class TypeController extends Controller
      */
     public function index()
     {
-        $types = Type::all();
+        $representations = Representation::all();
 
-        return view('type.index',[
-            'types' => $types,
-            'resource' => 'types',
+        return view('representation.index',[
+            'representations' => $representations,
+            'resource' => 'représentations',
         ]);
     }
 
@@ -51,10 +52,14 @@ class TypeController extends Controller
      */
     public function show($id)
     {
-        $type = Type::find($id);
+        $representation = Representation::find($id);
+        $date = Carbon::parse($representation->when)->format('d/m/Y');
+        $time = Carbon::parse($representation->when)->format('G:i');
 
-        return view('type.show',[
-            'type' => $type,
+        return view('representation.show',[
+            'representation' => $representation,
+            'date' => $date,
+            'time' => $time,
         ]);
     }
 

@@ -5,7 +5,7 @@
 @section('content')
     <h2>Modifier un artiste</h2>
 
-    <form action="{{ route('artist.update' ,$artist->id) }}" method="post">
+    <form action="{{ route('artist.create') }}" method="post">
         @csrf
         @method('PUT')
         <div>
@@ -39,7 +39,7 @@
         </div>
 
         <button>Modifier</button>
-        <a href="{{ route('artist.show',$artist->id) }}">Annuler</a>
+        <a href="{{ route('artist.index') }}">Annuler</a>
     </form>
 
     @if ($errors->any())

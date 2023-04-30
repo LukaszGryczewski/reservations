@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Type;
+use App\Models\Role;
 
-class TypeController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,12 +14,12 @@ class TypeController extends Controller
      */
     public function index()
     {
-        $types = Type::all();
-
-        return view('type.index',[
-            'types' => $types,
-            'resource' => 'types',
+        $roles = Role::all();
+        return view('role.index',[
+            'roles'    => $roles,
+            'resource' => 'roles'
         ]);
+
     }
 
     /**
@@ -51,11 +51,7 @@ class TypeController extends Controller
      */
     public function show($id)
     {
-        $type = Type::find($id);
-
-        return view('type.show',[
-            'type' => $type,
-        ]);
+        //
     }
 
     /**

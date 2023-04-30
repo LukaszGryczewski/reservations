@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Type;
+use App\Models\Location;
 
-class TypeController extends Controller
+class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,12 +14,13 @@ class TypeController extends Controller
      */
     public function index()
     {
-        $types = Type::all();
+        $locations = Location::all();
 
-        return view('type.index',[
-            'types' => $types,
-            'resource' => 'types',
+        return view('location.index',[
+            'locations' => $locations,
+            'resource' => 'lieux',
         ]);
+
     }
 
     /**
@@ -51,10 +52,10 @@ class TypeController extends Controller
      */
     public function show($id)
     {
-        $type = Type::find($id);
+        $location = Location::find($id);
 
-        return view('type.show',[
-            'type' => $type,
+        return view('location.show',[
+            'location' => $location,
         ]);
     }
 
