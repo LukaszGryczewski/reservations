@@ -7,14 +7,11 @@
 
     <form action="{{ route('artist.store') }}" method="post">
         @csrf
-        @method('PUT')
         <div>
             <label for="firstname">Prénom</label>
             <input type="text" id="firstname" name="firstname"
 	       @if(old('firstname'))
                 value="{{ old('firstname') }}"
-            @else
-                value="{{ $artist->firstname }}"
             @endif
 	           class="@error('firstname') is-invalid @enderror">
 
@@ -28,8 +25,6 @@
             <input type="text" id="lastname" name="lastname"
 	       @if(old('lastname'))
                 value="{{ old('lastname') }}"
-            @else
-                value="{{ $artist->lastname }}"
             @endif
 	           class="@error('lastname') is-invalid @enderror">
 

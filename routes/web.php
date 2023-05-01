@@ -35,6 +35,8 @@ Route::put('/artist/{id}', [ArtistController::class, 'update'])
 	->where('id', '[0-9]+')->name('artist.update');
 Route::get('/artist/create', [ArtistController::class, 'create'])->name('artist.create');
 Route::post('/artist', [ArtistController::class, 'store'])->name('artist.store');
+Route::delete('/artist/{id}', [ArtistController::class, 'destroy'])
+	->where('id', '[0-9]+')->name('artist.delete');
 
 Route::get('/type', [TypeController::class, 'index'])
     ->name('type.index');
