@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Artist;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ArtistController extends Controller
 {
@@ -28,6 +29,9 @@ class ArtistController extends Controller
      */
     public function create()
     {
+        if (! Gate::allows('create-artist')) {
+            abort(403);
+        }
         return view('artist.create');
     }
 
@@ -79,6 +83,9 @@ class ArtistController extends Controller
      */
     public function edit($id)
     {
+        if (! Gate::allows('create-artist')) {
+            abort(403);
+        }
         $artist = Artist::find($id);
 
         return view('artist.edit',[
@@ -124,7 +131,9 @@ class ArtistController extends Controller
         if($artist) {
             $artist->delete();
         }*/
-
+        if (! Gate::allows('create-artist')) {
+            abort(403);
+        }
         Artist::destroy($id);
         return redirect()->route('artist.index');
     }
