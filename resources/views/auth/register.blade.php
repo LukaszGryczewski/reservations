@@ -3,10 +3,31 @@
         @csrf
 
         <!-- Name -->
-        <div>
+        <!-- <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
+        </div> -->
+
+        <!-- Login -->
+        <div>
+            <x-input-label for="login" :value="__('Login')" />
+            <x-text-input id="login" class="block mt-1 w-full" type="text" name="login" :value="old('login')" required autofocus />
+            <x-input-error :messages="$errors->get('login')" class="mt-2" />
+        </div>
+
+        <!-- FirstName -->
+        <div>
+            <x-input-label for="firstname" :value="__('Firstname')" />
+            <x-text-input id="firstname" class="block mt-1 w-full" type="text" name="firstname" :value="old('firstname')" required autofocus />
+            <x-input-error :messages="$errors->get('firstname')" class="mt-2" />
+        </div>
+
+        <!-- Lastname -->
+        <div>
+            <x-input-label for="lastname" :value="__('Lastame')" />
+            <x-text-input id="lastname" class="block mt-1 w-full" type="text" name="lastname" :value="old('lastname')" required autofocus />
+            <x-input-error :messages="$errors->get('lastname')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
@@ -37,6 +58,13 @@
                             name="password_confirmation" required />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        </div>
+
+        <!-- Langue -->
+        <div>
+            <x-input-label for="langue" :value="__('Langue')" />
+            <x-text-input id="langue" class="block mt-1 w-full" type="text" name="langue" :value="old('langue')" required autofocus />
+            <x-input-error :messages="$errors->get('langue')" class="mt-2" />
         </div>
 
         <div class="flex items-center justify-end mt-4">

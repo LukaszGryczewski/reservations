@@ -29,4 +29,8 @@ class Role extends Model
      * @var bool
      */
     protected $timelabs = 'false';
+
+    public function users(){
+        return $this->belongsToMany(User::class);
+    }
 }
