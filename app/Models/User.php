@@ -49,4 +49,9 @@ class User extends \TCG\Voyager\Models\User
     public function roles(){
         return $this->belongsToMany(Roles::class);
     }
+
+    public function representations()
+    {
+        return $this->belongsToMany(Representation::class);
+    }
 }
