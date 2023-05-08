@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -47,11 +48,23 @@ class User extends \TCG\Voyager\Models\User
     ];
 
     public function roles(){
-        return $this->belongsToMany(Roles::class);
+        return $this->belongsToMany(Role::class);
     }
 
     public function representations()
     {
         return $this->belongsToMany(Representation::class);
     }
+
+    public function hasPermission($permission)
+{
+    return $this->roles()->whereHas('permissions', function ($query) use ($permission) {
+        $query->where('key', $permission);
+    })->exists();
+}
+
+public function permissions()
+{
+    return $this->roles()->with('permissions')->get()->pluck('permissions')->flatten()->unique('id');
+}
 }

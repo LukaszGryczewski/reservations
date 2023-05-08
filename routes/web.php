@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ArtistController;
-use App\Http\Controllers\TypeController;
-use App\Http\Controllers\LocalityController;
-use App\Http\Controllers\LocationController;
+use TCG\Voyager\Facades\Voyager;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ShowController;
+use App\Http\Controllers\TypeController;
+use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LocalityController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\RepresentationController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,6 +78,15 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
+/*Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});*/
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+
+    // Protection des routes Voyager par le middleware "auth"
+    Route::middleware(['auth'])->group(function () {
+        // Vos routes protégées par "auth" ici
+    });
 });
