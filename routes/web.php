@@ -1,6 +1,7 @@
 <?php
 
 use TCG\Voyager\Facades\Voyager;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ShowController;
@@ -57,6 +58,8 @@ Route::get('/show', [ShowController::class, 'index'])->name('show.index');
 Route::get('/show/{id}', [ShowController::class, 'show'])
 ->where('id', '[0-9]+')->name('show.show');
 
+Route::get('/', [ShowController::class, 'index'])->name('acceuil');
+
 Route::get('/representation', [RepresentationController::class, 'index'])
 ->name('representation.index');
 Route::get('/representation/{id}', [RepresentationController::class, 'show'])
@@ -90,3 +93,7 @@ Route::group(['prefix' => 'admin'], function () {
         // Vos routes protégées par "auth" ici
     });
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
