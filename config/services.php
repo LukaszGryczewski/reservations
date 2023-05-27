@@ -31,4 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'ticketmaster' => [
+        'base_url' => env('TICKETMASTER_BASE_URL', 'https://app.ticketmaster.com'),
+        'api_key' => env('TICKETMASTER_API_KEY'),
+    ],
+
 ];

@@ -2,11 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Show;
+use GuzzleHttp\Client;
+use Illuminate\Http\Request;
+use GuzzleHttp\ClientInterface;
+use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Exception\ClientException;
+use App\Services\RessourcesTheatreService;
+use App\Services\TheatreContemporainService;
+use App\Services\TicketmasterService;
 
-class ShowController extends Controller
+class ShowAPIController extends Controller
 {
+
+    /*protected $theatreService;*/
+
+    /*public function __construct(TheatreContemporainService $theatreService)
+    {
+        $this->theatreService = $theatreService;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,11 +28,20 @@ class ShowController extends Controller
      */
     public function index()
     {
-        $shows = Show::paginate(9);
-        return view('show.index',[
-            'shows'    => $shows,
-            'resource' => 'spectacles'
-        ]);
+        $ticketmasterService = new TicketmasterService();
+
+    // Récupère les spectacles
+    $shows = $ticketmasterService->searchEvents('spectacle');
+
+    // Récupère les concerts
+    $concerts = $ticketmasterService->searchEvents('concert');
+
+    // Récupère les pièces de théâtre
+    $theatrePlays = $ticketmasterService->searchEvents('théâtre');
+
+    return view('apii.index', compact('shows', 'concerts', 'theatrePlays'));
+
+
     }
 
     /**
@@ -51,7 +74,9 @@ class ShowController extends Controller
     public function show($id)
     {
         $show = Show::find($id);
-
+        /*$ressourcesTheatreService = new RessourcesTheatreService();
+        $show = $ressourcesTheatreService->getSpectacle($id);
+*/
         //Récupérer les artistes du spectacle et les grouper par type
         $collaborateurs = [];
 

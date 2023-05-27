@@ -11,7 +11,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LocalityController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\RepresentationController;
-
+use App\Http\Controllers\ShowAPIController;
+use App\Http\Controllers\TicketMasterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,6 +58,9 @@ Route::get('location/{id}', [LocationController::class, 'show'])
 Route::get('/show', [ShowController::class, 'index'])->name('show.index');
 Route::get('/show/{id}', [ShowController::class, 'show'])
 ->where('id', '[0-9]+')->name('show.show');
+
+Route::get('/apii', [ShowAPIController::class, 'index'])->name('apii.index');
+Route::get('/theatres', [TicketmasterController::class, 'getTheatreData'])->name('theatres');
 
 Route::get('/', [ShowController::class, 'index'])->name('acceuil');
 

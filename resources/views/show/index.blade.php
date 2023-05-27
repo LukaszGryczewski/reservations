@@ -32,4 +32,36 @@
             </div>
         @endforeach
     </div>
+
+    <div class="row">
+        <div class="col-12">
+            <nav aria-label="Pagination">
+                <ul class="pagination justify-content-center">
+                    @if ($shows->onFirstPage())
+                        <li class="page-item disabled">
+                            <span class="page-link" aria-hidden="true">&laquo;</span>
+                        </li>
+                    @else
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $shows->previousPageUrl() }}" rel="prev" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    @endif
+
+                    @if ($shows->hasMorePages())
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $shows->nextPageUrl() }}" rel="next" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    @else
+                        <li class="page-item disabled">
+                            <span class="page-link" aria-hidden="true">&raquo;</span>
+                        </li>
+                    @endif
+                </ul>
+            </nav>
+        </div>
+    </div>
 @endsection

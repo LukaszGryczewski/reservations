@@ -1,0 +1,47 @@
+<?php
+
+namespace App\Services;
+
+use GuzzleHttp\Client;
+
+class RessourcesTheatreService
+{
+    /**
+     * The base URL of the API.
+     *
+     * @var string
+     */
+    protected $baseUrl = 'https://www.ressources-theatre.net/api/v1';
+
+    /**
+     * The Guzzle HTTP client instance.
+     *
+     * @var \GuzzleHttp\ClientInterface
+     */
+    protected $httpClient;
+
+    /**
+     * Create a new service instance.
+     *
+     * @param  \GuzzleHttp\ClientInterface  $httpClient
+     * @return void
+     */
+    public function __construct(ClientInterface $httpClient)
+    {
+        $this->httpClient = $httpClient;
+    }
+
+    /**
+     * Get all spectacles from the API.
+     *
+     * @return mixed
+     */
+    public function getAllSpectacles()
+    {
+        $response = $this->httpClient->get($this->baseUrl . '/spectacles');
+
+        return json_decode($response->getBody()->getContents());
+    }
+
+    // Add your other service methods here
+}
