@@ -2,17 +2,22 @@
 
 use TCG\Voyager\Facades\Voyager;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ShowController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShowAPIController;
 use App\Http\Controllers\LocalityController;
 use App\Http\Controllers\LocationController;
-use App\Http\Controllers\RepresentationController;
-use App\Http\Controllers\ShowAPIController;
 use App\Http\Controllers\TicketMasterController;
+use App\Http\Controllers\RepresentationController;
+use Spatie\Feed\Feed;
+ use Spatie\Feed\FeedItem;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +32,44 @@ use App\Http\Controllers\TicketMasterController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+/**
+ * Rout for read the logs
+ */
+Route::get('/logs', function () {
+    $logPath = storage_path('logs/laravel.log');
+
+    if (File::exists($logPath)) {
+        $logContent = File::get($logPath);
+        return response($logContent, 200)->header('Content-Type', 'text/plain');
+    } else {
+        abort(404, 'Log file not found');
+    }
+});
+/**
+ * FluxRSS
+ */
+ /*Route::get('/rss', function () {
+     $feed = Feed::create()
+         ->title('Mon Flux RSS')
+         ->description('Ceci est un exemple de flux RSS')
+         ->link('http://exemple.com');
+
+     // Ajoutez des articles au flux RSS
+     $articles = App\Article::all();
+
+     foreach ($articles as $article) {
+         $feed->add(FeedItem::create()
+             ->title($article->title)
+             ->summary($article->summary)
+             ->link($article->url)
+             ->author($article->author)
+             ->updated($article->updated_at)
+         );
+     }
+
+     return $feed->toResponse();
+ });*/
 
 Route::get('/artist', [ArtistController::class, 'index'])
     ->name('artist.index');
@@ -59,8 +102,14 @@ Route::get('/show', [ShowController::class, 'index'])->name('show.index');
 Route::get('/show/{id}', [ShowController::class, 'show'])
 ->where('id', '[0-9]+')->name('show.show');
 
-Route::get('/apii', [ShowAPIController::class, 'index'])->name('apii.index');
+/*API TicketMaster*/
+//Route::get('/apii', [ShowAPIController::class, 'index'])->name('apii.index');
 Route::get('/theatres', [TicketmasterController::class, 'getTheatreData'])->name('theatres');
+
+/*System de payement Laravel Stripe*/
+Route::post('/process/payment', [PaymentController::class, 'processPayment'])->name('process.payment');
+Route::get('/payment/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
+Route::get('/payment/failure', [PaymentController::class, 'paymentFailure'])->name('payment.failure');
 
 Route::get('/', [ShowController::class, 'index'])->name('acceuil');
 

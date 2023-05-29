@@ -8,6 +8,14 @@ use Throwable;
 class Handler extends ExceptionHandler
 {
     /**
+      * For show the errors logs in the navigateur
+      */
+    public function render($request, Throwable $exception)
+    {
+        return parent::render($request, $exception);
+    }
+
+    /**
      * A list of exception types with their corresponding custom log levels.
      *
      * @var array<class-string<\Throwable>, \Psr\Log\LogLevel::*>

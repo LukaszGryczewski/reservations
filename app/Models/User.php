@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Cashier\Billable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends \TCG\Voyager\Models\User
+class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable,Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -66,5 +67,16 @@ class User extends \TCG\Voyager\Models\User
 public function permissions()
 {
     return $this->roles()->with('permissions')->get()->pluck('permissions')->flatten()->unique('id');
+}
+
+public function defaultPaymentMethod()
+{
+    $defaultPaymentMethod = $this->paymentMethods()->where('default', true)->first();
+
+    if (!$defaultPaymentMethod) {
+        return null;
+    }
+
+    return $defaultPaymentMethod->asStripePaymentMethod();
 }
 }

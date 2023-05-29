@@ -8,10 +8,12 @@
         "php": "^8.0.2",
         "doctrine/dbal": "^2.13",
         "guzzlehttp/guzzle": "^7.5",
+        "laravel/cashier": "^14.12",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.2",
+        "spatie/laravel-feed": "^4.2",
         "tcg/voyager": "^1.6"
     },
     "require-dev": {

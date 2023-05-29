@@ -79,5 +79,7 @@
         </p>
     </article>
 
+    @include('stripe')
+
     <nav><a href="{{ route('show.index') }}">Retour à l'index</a></nav>
 @endsection
