@@ -115,6 +115,7 @@ class ShowController extends Controller
         $request->validate([
             'slug' => 'required',
             'title' => 'required',
+            'description' => 'nullable',
             'poster_url' => 'nullable|url',
             'location_id' => 'required',
             'price' => 'required|numeric',
@@ -129,6 +130,7 @@ class ShowController extends Controller
         $show = new Show();
         $show->slug = $request->input('slug');
         $show->title = $request->input('title');
+        $show->description = $request->input('description');
         $show->poster_url = $request->input('poster_url');
         $show->location_id = $request->input('location_id');
         $show->price = $request->input('price');
@@ -149,10 +151,7 @@ class ShowController extends Controller
             $representation->save();
         }
 
-        return redirect()->route('show.index',[
-            'representations' => $representations,
-            'artists' => $artists
-        ]);
+        return redirect()->route('show.index');
     }
 
     /**
@@ -232,6 +231,7 @@ class ShowController extends Controller
         /*if (! Gate::allows('create-show')) {
             abort(403);
         }*/
+        Representation::where('show_id', $id)->delete();
         Show::destroy($id);
         return redirect()->route('show.index');
     }

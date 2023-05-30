@@ -43,8 +43,10 @@
         <p> Aucune représentation </p>
         @endif
 
+
         <h2>Liste des artistes</h2>
-        <p><strong>Auteur:</strong>
+@if(isset($collaborateurs['auteur']) && count($collaborateurs['auteur']) > 0)
+    <p><strong>Auteur:</strong>
         @foreach ($collaborateurs['auteur'] as $auteur)
             {{ $auteur->firstname }}
             {{ $auteur->lastname }}
@@ -54,8 +56,11 @@
                 ,
             @endif
         @endforeach
-        </p>
-        <p><strong>Metteur en scène:</strong>
+    </p>
+@endif
+
+@if(isset($collaborateurs['scénographe']) && count($collaborateurs['scénographe']) > 0)
+    <p><strong>Metteur en scène:</strong>
         @foreach ($collaborateurs['scénographe'] as $scenographe)
             {{ $scenographe->firstname }}
             {{ $scenographe->lastname }}
@@ -65,8 +70,11 @@
                 ,
             @endif
         @endforeach
-        </p>
-        <p><strong>Distribution:</strong>
+    </p>
+@endif
+
+@if(isset($collaborateurs['comédien']) && count($collaborateurs['comédien']) > 0)
+    <p><strong>Distribution:</strong>
         @foreach ($collaborateurs['comédien'] as $comedien)
             {{ $comedien->firstname }}
             {{ $comedien->lastname }}
@@ -76,8 +84,11 @@
                 ,
             @endif
         @endforeach
-        </p>
+    </p>
+@endif
+
     </article>
+
 
     <div><a href="{{ route('show.edit',$show->id) }}">Modifer</a></a></div>
 

@@ -21,12 +21,12 @@ return new class extends Migration
             $table->foreign('artist_type_id')
                   ->references('id')
                   ->on('artist_type')
-                  ->onDelete('restrict')
+                  ->onDelete('cascade')
                   ->onUpdate('cascade');
             $table->foreign('show_id')
                   ->references('id')
                   ->on('shows')
-                  ->onDelete('restrict')
+                  ->onDelete('cascade')
                   ->onUpdate('cascade');
 
         });

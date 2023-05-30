@@ -95,7 +95,7 @@
             </main>
         </div>
 
-
+        @stack('scripts')
     </body>
 
         @include('layouts.footer')

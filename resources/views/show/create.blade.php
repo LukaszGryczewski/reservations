@@ -35,11 +35,7 @@
 
         <div>
             <label for="description">Description</label>
-            <input type="text" id="description" name="description"
-                   @if(old('description'))
-                   value="{{ old('description') }}"
-                   @endif
-                   class="@error('description') is-invalid @enderror">
+            <textarea id="description" name="description" class="@error('description') is-invalid @enderror">{{ old('description') }}</textarea>
 
             @error('description')
             <div class="alert alert-danger">{{ $message }}</div>
@@ -103,10 +99,10 @@
         <div>
             <label for="representations">Représentations</label>
             <!-- Champs pour les dates et lieux des représentations -->
-            <div id="representations-container">
+            <div id="representations-container" data-representation-count="1">
                 <div class="representation">
                     <input type="datetime-local" name="representations[0][when]" required>
-                    <select name="representations[0][location]">
+                    <select name="representations[0][location_id]">
                         @foreach ($locations as $location)
                             <option value="{{ $location->id }}">{{ $location->designation }}</option>
                         @endforeach
@@ -137,4 +133,41 @@
     @endif
 
     <nav><a href="{{ route('show.index') }}">Retour à l'index</a></nav>
+
 @endsection
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var addRepresentationButton = document.getElementById('add-representation');
+            var representationsContainer = document.getElementById('representations-container');
+            var representationCount = 1;
+
+            addRepresentationButton.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                var representationDiv = document.createElement('div');
+                representationDiv.classList.add('representation');
+
+                var datetimeInput = document.createElement('input');
+                datetimeInput.setAttribute('type', 'datetime-local');
+                datetimeInput.setAttribute('name', 'representations[' + representationCount + '][when]');
+
+                var locationSelect = document.createElement('select');
+                locationSelect.setAttribute('name', 'representations[' + representationCount + '][location_id]');
+
+                @foreach ($locations as $location)
+                    var locationOption = document.createElement('option');
+                    locationOption.setAttribute('value', '{{ $location->id }}');
+                    locationOption.textContent = '{{ $location->designation }}';
+                    locationSelect.appendChild(locationOption);
+                @endforeach
+
+                representationDiv.appendChild(datetimeInput);
+                representationDiv.appendChild(locationSelect);
+
+                representationsContainer.appendChild(representationDiv);
+                representationCount++;
+            });
+        });
+    </script>
+@endpush
