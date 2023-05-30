@@ -101,6 +101,15 @@ Route::get('location/{id}', [LocationController::class, 'show'])
 Route::get('/show', [ShowController::class, 'index'])->name('show.index');
 Route::get('/show/{id}', [ShowController::class, 'show'])
 ->where('id', '[0-9]+')->name('show.show');
+Route::get('/show/edit/{id}', [ShowController::class, 'edit'])
+	->where('id', '[0-9]+')->name('show.edit');
+Route::put('/show/{id}', [ShowController::class, 'update'])
+	->where('id', '[0-9]+')->name('show.update');
+Route::get('/show/create', [ShowController::class, 'create'])->name('show.create');
+Route::post('/show', [ShowController::class, 'store'])->name('show.store');
+Route::delete('/show/{id}', [ShowController::class, 'destroy'])
+	->where('id', '[0-9]+')->name('show.delete');
+
 
 /*API TicketMaster*/
 //Route::get('/apii', [ShowAPIController::class, 'index'])->name('apii.index');

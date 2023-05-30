@@ -4,6 +4,9 @@
 
 @section('content')
     <h1>Liste des {{ $resource }}</h1>
+    <ul>
+        <li><a href="{{ route('show.create') }}">Ajouter Spectacle</a></li>
+    </ul>
 
     <div class="row">
         @foreach($shows as $show)

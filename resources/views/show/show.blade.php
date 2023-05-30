@@ -49,7 +49,7 @@
             {{ $auteur->firstname }}
             {{ $auteur->lastname }}
             @if($loop->iteration == $loop->count-1)
-                et 
+                et
             @elseif(!$loop->last)
                 ,
             @endif
@@ -78,6 +78,16 @@
         @endforeach
         </p>
     </article>
+
+    <div><a href="{{ route('show.edit',$show->id) }}">Modifer</a></a></div>
+
+    <form method="post" action="{{ route('show.delete', $show->id) }}">
+		@csrf
+        @method('DELETE')
+		<input type="hidden" name="method" value="DELETE">
+		<button>Supprimer</button>
+    </form>
+
 
     @include('stripe')
 

@@ -1,5 +1,7 @@
 @extends('layouts.main')
+
 @section('title','List des localitées')
+
 @section('content')
 
     <h1>Listes des {{ $resource }}</h1>
@@ -9,3 +11,4 @@
 
         @endforeach
     </ul>
+@endsection
