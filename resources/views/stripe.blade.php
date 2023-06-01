@@ -1,5 +1,6 @@
 <form action="{{ route('process.payment') }}" method="POST">
     @csrf
+    <h2>Formulaire de payement </h2>
     <input type="hidden" name="show_id" value="{{ $show->id }}">
     <div class="form-group">
         <label for="card_number">Numéro de carte</label>
