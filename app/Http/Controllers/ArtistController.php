@@ -29,9 +29,9 @@ class ArtistController extends Controller
      */
     public function create()
     {
-        if (! Gate::allows('create-artist')) {
+        /*if (! Gate::allows('create-artist')) {
             abort(403);
-        }
+        }*/
         return view('artist.create');
     }
 
